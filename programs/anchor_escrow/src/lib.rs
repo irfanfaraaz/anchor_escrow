@@ -1,16 +1,29 @@
 use anchor_lang::prelude::*;
 
-declare_id!("9GpL1ZXeQM9L9BJJnZySCST95W3Pc5SXoiPp689cT8q9");
+mod error;
+mod instructions;
+mod state;
+use instructions::*;
+
+declare_id!("22222222222222222222222222222222222222222222");
 
 #[program]
 pub mod anchor_escrow {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        msg!("Greetings from: {:?}", ctx.program_id);
-        Ok(())
+    #[instruction(discriminator = 0)]
+    pub fn make(ctx: Context<Make>, seed: u64, receive: u64, amount: u64) -> Result<()> {
+        instructions::make::handler(ctx, seed, receive, amount)
+        //...
     }
-}
 
-#[derive(Accounts)]
-pub struct Initialize {}
+    // #[instruction(discriminator = 1)]
+    // pub fn take(ctx: Context<Take>) -> Result<()> {
+    //     Ok(())
+    // }
+
+    // #[instruction(discriminator = 2)]
+    // pub fn refund(ctx: Context<Refund>) -> Result<()> {
+    //     Ok(())
+    // }
+}
