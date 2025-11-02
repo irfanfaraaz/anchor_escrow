@@ -17,10 +17,10 @@ pub mod anchor_escrow {
         //...
     }
 
-    // #[instruction(discriminator = 1)]
-    // pub fn take(ctx: Context<Take>) -> Result<()> {
-    //     Ok(())
-    // }
+    #[instruction(discriminator = 1)]
+    pub fn take(ctx: Context<Take>) -> Result<()> {
+        instructions::take::handler(ctx)
+    }
 
     // #[instruction(discriminator = 2)]
     // pub fn refund(ctx: Context<Refund>) -> Result<()> {
