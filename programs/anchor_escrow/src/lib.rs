@@ -22,8 +22,8 @@ pub mod anchor_escrow {
         instructions::take::handler(ctx)
     }
 
-    // #[instruction(discriminator = 2)]
-    // pub fn refund(ctx: Context<Refund>) -> Result<()> {
-    //     Ok(())
-    // }
+    #[instruction(discriminator = 2)]
+    pub fn refund(ctx: Context<Refund>) -> Result<()> {
+        instructions::refund::handler(ctx)
+    }
 }
